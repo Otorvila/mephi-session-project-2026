@@ -1,0 +1,111 @@
+    1  ip
+    2  ip a
+    3  hostnamectl set-hostname mephi-2026.domain.local
+    4  ip a
+    5  pind 8.8.8.8
+    6  ping 8.8.8.8
+    7  ls
+    8  mkdir lab_mipfi
+    9  cd lab_mipfi/
+   10  ls
+   11  mkdir zoc | cd zoc
+   12  ls
+   13  cd zoc
+   14  ls
+   15  ping -c 8.8.8.8 >./ping.out
+   16  ping -c 4 8.8.8.8 >./ping.out
+   17  ls
+   18  cat ping.out 
+   19  dnf update -y
+   20  sudo dnf update -y
+   21  dnf install -y nginx libcap-ng-utils
+   22  sudo dnf install -y nginx libcap-ng-utils
+   23  dnf download --destdir /tmp tcpdump
+   24  rpm -ivh /tmp/tcpdump-*.rpm
+   25  rm -f /tmp/tcpdump-*.rpm
+   26  dnf download --arch=x86_64 --destdir=/tmp tcpdump
+   27  ls -l /tmp/tcpdump-*.rpm
+   28  sudo rpm -ivh /tmp/tcpdump-4.99.5-1.red80.x86_64.rpm
+   29  tcpdump --version
+   30  dnf history > ~/dnf.out
+   31  ls
+   32  dnf history > ./dnf.out
+   33  ls
+   34  cat dnf.out 
+   35  fdisk /dev/sdb
+   36  shutdown --now
+   37  shutdown now
+   38  lsblk
+   39  ls /
+   40  ls /tmp
+   41  systemctl start nginx
+   42  systemctl enable nginx
+   43  journalctl -u nginx -b > ~/journalctl.out
+   44  cd lab_mipfi/
+   45  ls
+   46  cd zoc/
+   47  journalctl -u nginx -b > ./journalctl.out
+   48  ls
+   49  cat journalctl.out 
+   50  mkdir -p /data/mephi-2026
+   51  sudo mkdir -p /data/mephi-2026
+   52  cd /data/mephi-2026
+   53  ls
+   54  groupadd -g 4444 curators
+   55  sudo groupadd -g 4444 curators
+   56  sudo useradd -u 5501 user1
+   57  sudo useradd -u 5502 user1
+   58  sudo useradd -u 5502 user2
+   59  sudo useradd -u 5503 user3
+   60  sudo useradd -G curators curator1
+   61  sudo useradd -G curators curator2
+   62  sudo groupadd developers
+   63  sudo usermod -aG developers user1
+   64  sudo usermod -aG developers user2
+   65  sudo usermod -aG developers user3
+   66  sudo chown root:developers /data/mephi-2026
+   67  sudo chmod 770 /data/mephi-2026
+   68  sudo chmod g+s /data/mephi-2026
+   69  sudo setfacl -R -m g:curators:r-x /data/mephi-2026
+   70  sudo setfacl -d -m g:curators:r-x /data/mephi-2026
+   71  ls -ld /data/mephi-2026
+   72  sudo -u user1 tcpdump -c 1 -i any
+   73  sudo chmod u-s /usr/sbin/tcpdump
+   74  sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+   75  getcap /usr/sbin/tcpdump > ~/lab_mipfi/zoc/getcap.out
+   76  cd ~/lab_mipfi/zoc/
+   77  ls
+   78  cat getcap.out 
+   79  sudo -u user1 tcpdump -c 1 -i any
+   80  getenforce > ~/lab_mipfi/zoc/getenforce.out
+   81  ls
+   82  cat getenforce.out 
+   83  sudo semanage fcontext -a -t httpd_sys_content_t "/mephi-web(/.*)?"
+   84  sudo restorecon -Rv /mephi-web
+   85  sudo usermod -s /sbin/nologin curator1
+   86  sudo usermod -s /sbin/nologin curator2
+   87  sudo sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   90/' /etc/login.defs
+   88  sudo chage -M 90 user1
+   89  sudo chage -M 90 user2
+   90  sudo chage -M 90 user3
+   91  sudo chage -M 90 curator1
+   92  sudo chage -M 90 curator2
+   93  sudo sed -i 's/^# minlen.*/minlen = 12/' /etc/security/pwquality.conf
+   94  grep minlen /etc/security/pwquality.conf
+   95  echo "Hello from Student: M265242" | sudo tee /mephi-web/index.html
+   96  cd /mephi-web/
+   97  ls
+   98  cat index.html 
+   99  sudo nano /etc/nginx/nginx.conf
+  100  sudo systemctl restart nginx
+  101  curl http://localhost/
+  102  cd ~/lab_mipfi/zoc/
+  103  ls
+  104  curl http://localhost/ > ~/curl.out
+  105  curl http://localhost/ > ~/lab_mipfi/zoc/curl.iyt
+  106  curl http://localhost/ > ~/lab_mipfi/zoc/curl.out
+  107  ls
+  108  cat curl.
+  109  cat curl.out 
+  110  ls
+  111  history > ./history.out
